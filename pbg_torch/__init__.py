@@ -7,3 +7,18 @@ workspace ``core`` via bigraph-schema package discovery.
 """
 
 __version__ = "0.1.0"
+
+from pbg_torch.spec import SurrogateSpec, Normalizer
+from pbg_torch.dataset import TransitionDataset
+from pbg_torch.sampler import TrajectorySampler, SamplingPlan
+from pbg_torch.model import SurrogateNet
+from pbg_torch.trainer import train_surrogate
+from pbg_torch.processes import (
+    NeuralProcess, register_neural_process, neural_process_node,
+)
+
+__all__ = [
+    "SurrogateSpec", "Normalizer", "TransitionDataset",
+    "TrajectorySampler", "SamplingPlan", "SurrogateNet", "train_surrogate",
+    "NeuralProcess", "register_neural_process", "neural_process_node",
+]

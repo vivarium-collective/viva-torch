@@ -1,0 +1,67 @@
+"""NeuralProcess: a drop-in surrogate Process backed by a trained SurrogateNet."""
+from __future__ import annotations
+
+from typing import Any, Optional
+
+import numpy as np
+from process_bigraph import Process
+
+from pbg_torch.model import SurrogateNet
+from pbg_torch.pathing import port_key
+from pbg_torch.spec import SurrogateSpec
+
+
+class NeuralProcess(Process):
+    """Approximates a target subsystem's per-step dynamics.
+
+    Reads feature ports (targets + drivers), predicts next absolute target
+    values, and writes them with ``overwrite`` semantics.
+    """
+
+    config_schema = {
+        "checkpoint": {"_type": "string", "_default": ""},
+    }
+
+    def __init__(self, config: Optional[dict] = None, core: Any = None) -> None:
+        super().__init__(config, core)
+        self.net = SurrogateNet.load(self.config["checkpoint"])
+        self.spec: SurrogateSpec = self.net.spec
+        self._feature_keys = [port_key(p) for p in self.spec.feature_paths]
+        self._target_keys = [port_key(p) for p in self.spec.target_paths_t]
+
+    def inputs(self):
+        return {k: "float" for k in self._feature_keys}
+
+    def outputs(self):
+        return {k: "overwrite[float]" for k in self._target_keys}
+
+    def update(self, state, interval):
+        x = np.array([[float(state[k]) for k in self._feature_keys]], dtype=np.float64)
+        nxt = self.net.predict_next(x)[0]
+        return {k: float(nxt[i]) for i, k in enumerate(self._target_keys)}
+
+
+def register_neural_process(core: Any, name: str = "NeuralProcess") -> bool:
+    """Register NeuralProcess into ``core``. Idempotent; returns True if newly added."""
+    try:
+        if name in (getattr(core, "link_registry", {}) or {}):
+            return False
+        core.register_link(name, NeuralProcess)
+        return True
+    except Exception:
+        return False
+
+
+def neural_process_node(*, checkpoint: str, spec: SurrogateSpec, interval: float = 1.0,
+                        address: str = "local:NeuralProcess") -> dict:
+    """Build a composite node for a NeuralProcess, wiring ports to their paths."""
+    inputs = {port_key(p): list(p) for p in spec.feature_paths}
+    outputs = {port_key(p): list(p) for p in spec.target_paths_t}
+    return {
+        "_type": "process",
+        "address": address,
+        "config": {"checkpoint": checkpoint},
+        "interval": interval,
+        "inputs": inputs,
+        "outputs": outputs,
+    }
