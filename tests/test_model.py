@@ -38,3 +38,12 @@ def test_save_load_round_trip(tmp_path):
     after = reloaded.predict_next(x)
     np.testing.assert_allclose(before, after, rtol=1e-6)
     assert reloaded.spec == net.spec
+
+
+def test_predict_next_absolute_returns_raw_prediction():
+    # In "absolute" mode the net predicts next values directly (no residual add).
+    net = _net("absolute")
+    x = np.array([[0.3, 0.5]])
+    raw = net.forward(torch.tensor(x, dtype=torch.float32)).detach().numpy()
+    nxt = net.predict_next(x)
+    np.testing.assert_allclose(nxt, raw, rtol=1e-5)

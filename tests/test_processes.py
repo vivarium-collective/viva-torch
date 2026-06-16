@@ -44,3 +44,26 @@ def test_surrogate_runs_in_a_composite(tmp_path):
     assert np.isfinite(xs).all()
     assert (xs > 0).all()
     assert xs[-1] > xs[0]
+
+
+def test_update_rejects_interval_mismatch(tmp_path):
+    # A NeuralProcess trained at dt=1.0 must refuse a different interval rather
+    # than silently advancing the wrong amount of dynamics.
+    spec = logistic_spec()  # timestep == 1.0
+    inits = [{"x": float(x0), "r": 0.5} for x0 in np.linspace(0.05, 2.0, 6)]
+    ds = TrajectorySampler(target_document(0.1, 0.5), spec, make_core()).sample(
+        SamplingPlan(n_steps=10, timestep=1.0, initial_states=inits))
+    net, _ = train_surrogate(ds, hidden=(8, 8), epochs=5, seed=0)
+    ckpt = tmp_path / "ckpt.pt"
+    net.save(ckpt)
+
+    proc = NeuralProcess({"checkpoint": str(ckpt)}, make_core())
+    proc.update({"x": 0.2, "r": 0.5}, 1.0)  # matched dt: fine
+    with __import__("pytest").raises(ValueError, match="trained at dt"):
+        proc.update({"x": 0.2, "r": 0.5}, 2.0)
+
+
+def test_node_interval_defaults_to_trained_timestep():
+    spec = logistic_spec()  # timestep == 1.0
+    node = neural_process_node(checkpoint="x.pt", spec=spec)
+    assert node["interval"] == spec.timestep

@@ -7,6 +7,9 @@ from tests.analytic import make_core, target_document, logistic_spec
 
 
 def test_surrogate_matches_target_within_tolerance(tmp_path):
+    # INTERPOLATION gate: eval driver values (r=0.45, 0.55) are in the training
+    # set and eval x0 lies within the sampled range. Proves the pipeline works
+    # end-to-end, not driver-axis extrapolation.
     spec = logistic_spec()
     train_inits = [{"x": float(x0), "r": float(r)}
                    for x0 in np.linspace(0.05, 2.0, 10)
