@@ -4,3 +4,4 @@ __pycache__/
 out/
 *.npz
 *.pt
+demo_report.html
