@@ -16,9 +16,11 @@ from pbg_torch.trainer import train_surrogate
 from pbg_torch.processes import (
     NeuralProcess, register_neural_process, neural_process_node,
 )
+from pbg_torch.evaluate import evaluate_surrogate
 
 __all__ = [
     "SurrogateSpec", "Normalizer", "TransitionDataset",
     "TrajectorySampler", "SamplingPlan", "SurrogateNet", "train_surrogate",
     "NeuralProcess", "register_neural_process", "neural_process_node",
+    "evaluate_surrogate",
 ]
