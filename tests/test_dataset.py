@@ -1,6 +1,6 @@
 import numpy as np
-from pbg_torch.spec import SurrogateSpec
-from pbg_torch.dataset import TransitionDataset
+from viva_torch.spec import SurrogateSpec
+from viva_torch.dataset import TransitionDataset
 
 
 def _toy():

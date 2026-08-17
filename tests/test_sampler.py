@@ -1,7 +1,7 @@
 import numpy as np
 from process_bigraph import Composite
 
-from pbg_torch.sampler import TrajectorySampler, SamplingPlan
+from viva_torch.sampler import TrajectorySampler, SamplingPlan
 from tests.analytic import make_core, target_document, logistic_spec
 
 

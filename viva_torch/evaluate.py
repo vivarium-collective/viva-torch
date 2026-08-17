@@ -7,9 +7,9 @@ from typing import Callable, List
 import numpy as np
 from process_bigraph import Composite
 
-from pbg_torch.pathing import assemble_vector, port_key
-from pbg_torch.processes import register_neural_process, neural_process_node
-from pbg_torch.spec import SurrogateSpec
+from viva_torch.pathing import assemble_vector, port_key
+from viva_torch.processes import register_neural_process, neural_process_node
+from viva_torch.spec import SurrogateSpec
 
 
 def _rollout_target(target_document, spec, core, overrides, n_steps, timestep):
@@ -82,7 +82,7 @@ def _write_report(path: str, metrics: dict, spec: SurrogateSpec) -> None:
         for k, m in metrics["per_target"].items()
     )
     html = f"""<!doctype html><html><head><meta charset="utf-8">
-<title>pbg-torch surrogate evaluation</title></head><body>
+<title>viva-torch surrogate evaluation</title></head><body>
 <h1>Surrogate evaluation</h1>
 <p>Overall normalized RMSE: {metrics['overall_nrmse']:.4g}</p>
 <table border="1" cellpadding="4"><tr><th>target</th><th>RMSE</th>

@@ -8,9 +8,9 @@ from typing import List
 import numpy as np
 from process_bigraph import Composite
 
-from pbg_torch.dataset import TransitionDataset
-from pbg_torch.pathing import assemble_vector
-from pbg_torch.spec import SurrogateSpec
+from viva_torch.dataset import TransitionDataset
+from viva_torch.pathing import assemble_vector
+from viva_torch.spec import SurrogateSpec
 
 
 @dataclass

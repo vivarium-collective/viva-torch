@@ -7,9 +7,9 @@ import numpy as np
 import torch
 from torch import nn
 
-from pbg_torch.dataset import TransitionDataset
-from pbg_torch.model import SurrogateNet
-from pbg_torch.spec import Normalizer
+from viva_torch.dataset import TransitionDataset
+from viva_torch.model import SurrogateNet
+from viva_torch.spec import Normalizer
 
 
 def _training_signal(ds: TransitionDataset) -> np.ndarray:

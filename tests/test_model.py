@@ -1,8 +1,8 @@
 import numpy as np
 import torch
 
-from pbg_torch.spec import SurrogateSpec, Normalizer
-from pbg_torch.model import SurrogateNet
+from viva_torch.spec import SurrogateSpec, Normalizer
+from viva_torch.model import SurrogateNet
 
 
 def _net(parameterization="delta"):

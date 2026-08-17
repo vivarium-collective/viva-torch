@@ -1,9 +1,9 @@
 """Demo: approximate logistic growth and write an evaluation report."""
 import numpy as np
 
-from pbg_torch.sampler import TrajectorySampler, SamplingPlan
-from pbg_torch.trainer import train_surrogate
-from pbg_torch.evaluate import evaluate_surrogate
+from viva_torch.sampler import TrajectorySampler, SamplingPlan
+from viva_torch.trainer import train_surrogate
+from viva_torch.evaluate import evaluate_surrogate
 import sys, os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "tests"))
 from analytic import make_core, target_document, logistic_spec  # noqa: E402
