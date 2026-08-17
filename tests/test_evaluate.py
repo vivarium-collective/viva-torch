@@ -1,8 +1,8 @@
 import numpy as np
 
-from pbg_torch.sampler import TrajectorySampler, SamplingPlan
-from pbg_torch.trainer import train_surrogate
-from pbg_torch.evaluate import evaluate_surrogate
+from viva_torch.sampler import TrajectorySampler, SamplingPlan
+from viva_torch.trainer import train_surrogate
+from viva_torch.evaluate import evaluate_surrogate
 from tests.analytic import make_core, target_document, logistic_spec
 
 

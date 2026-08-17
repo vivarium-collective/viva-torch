@@ -1,4 +1,4 @@
-"""A cheap analytic target Process for end-to-end pbg-torch tests.
+"""A cheap analytic target Process for end-to-end viva-torch tests.
 
 Logistic growth dx/dt = r*x*(1 - x/K), with ``r`` supplied as a *driver*
 (constant per trajectory) and ``x`` the predicted *target*.
@@ -8,7 +8,7 @@ from __future__ import annotations
 from bigraph_schema import allocate_core
 from process_bigraph import Process
 
-from pbg_torch.spec import SurrogateSpec
+from viva_torch.spec import SurrogateSpec
 
 
 class LogisticGrowth(Process):

@@ -1,5 +1,5 @@
 from bigraph_schema import allocate_core
-from pbg_torch.processes import register_neural_process
+from viva_torch.processes import register_neural_process
 
 
 def test_neural_process_registers_into_core():

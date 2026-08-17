@@ -2,9 +2,9 @@ import numpy as np
 from bigraph_schema import allocate_core
 from process_bigraph import Composite
 
-from pbg_torch.sampler import TrajectorySampler, SamplingPlan
-from pbg_torch.trainer import train_surrogate
-from pbg_torch.processes import (
+from viva_torch.sampler import TrajectorySampler, SamplingPlan
+from viva_torch.trainer import train_surrogate
+from viva_torch.processes import (
     NeuralProcess, register_neural_process, neural_process_node,
 )
 from tests.analytic import make_core, target_document, logistic_spec
@@ -18,7 +18,7 @@ def test_register_is_idempotent():
 
 
 def test_ports_derive_from_spec():
-    from pbg_torch.pathing import port_key
+    from viva_torch.pathing import port_key
     assert port_key(["x"]) == "x"
     assert port_key(["r"]) == "r"
 

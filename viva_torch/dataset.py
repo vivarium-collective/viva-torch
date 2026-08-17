@@ -6,7 +6,7 @@ from dataclasses import dataclass
 
 import numpy as np
 
-from pbg_torch.spec import SurrogateSpec
+from viva_torch.spec import SurrogateSpec
 
 
 @dataclass

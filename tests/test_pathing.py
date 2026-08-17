@@ -1,5 +1,5 @@
 import numpy as np
-from pbg_torch.pathing import get_path, assemble_vector, port_key
+from viva_torch.pathing import get_path, assemble_vector, port_key
 
 
 def test_get_path_nested():

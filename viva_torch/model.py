@@ -7,7 +7,7 @@ import numpy as np
 import torch
 from torch import nn
 
-from pbg_torch.spec import SurrogateSpec, Normalizer
+from viva_torch.spec import SurrogateSpec, Normalizer
 
 
 class SurrogateNet(nn.Module):

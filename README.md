@@ -1,8 +1,8 @@
-# pbg-torch
+# viva-torch
 
 Neural-network surrogate Processes for [process-bigraph](https://github.com/vivarium-collective/process-bigraph).
 
-`pbg-torch` trains a PyTorch network to approximate the per-step dynamics of
+`viva-torch` trains a PyTorch network to approximate the per-step dynamics of
 any target `Process`/`Composite` over a curated panel of observables, and emits
 a drop-in `NeuralProcess` that rolls out autoregressively as a coarse-grained
 surrogate.
@@ -10,7 +10,7 @@ surrogate.
 ## Pipeline
 
 ```python
-from pbg_torch import (
+from viva_torch import (
     SurrogateSpec, TrajectorySampler, SamplingPlan,
     train_surrogate, neural_process_node, evaluate_surrogate,
 )

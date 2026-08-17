@@ -6,9 +6,9 @@ from typing import Any, Optional
 import numpy as np
 from process_bigraph import Process
 
-from pbg_torch.model import SurrogateNet
-from pbg_torch.pathing import port_key
-from pbg_torch.spec import SurrogateSpec
+from viva_torch.model import SurrogateNet
+from viva_torch.pathing import port_key
+from viva_torch.spec import SurrogateSpec
 
 
 class NeuralProcess(Process):

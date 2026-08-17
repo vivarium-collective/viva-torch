@@ -1,5 +1,5 @@
 import numpy as np
-from pbg_torch.spec import SurrogateSpec, Normalizer
+from viva_torch.spec import SurrogateSpec, Normalizer
 
 
 def test_feature_ordering_is_targets_then_drivers():
