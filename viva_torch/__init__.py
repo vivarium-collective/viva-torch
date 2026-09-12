@@ -17,10 +17,11 @@ from viva_torch.processes import (
     NeuralProcess, register_neural_process, neural_process_node,
 )
 from viva_torch.evaluate import evaluate_surrogate
+from viva_torch.core import build_core
 
 __all__ = [
     "SurrogateSpec", "Normalizer", "TransitionDataset",
     "TrajectorySampler", "SamplingPlan", "SurrogateNet", "train_surrogate",
     "NeuralProcess", "register_neural_process", "neural_process_node",
-    "evaluate_surrogate",
+    "evaluate_surrogate", "build_core",
 ]
