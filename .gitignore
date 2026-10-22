@@ -5,3 +5,6 @@ out/
 *.npz
 *.pt
 demo_report.html
+
+# superpowers planning/design docs — kept local, not tracked
+docs/superpowers/
